@@ -4,7 +4,8 @@ namespace DIO.Cadastro
 {
     class Program
     {
-        static DoramaRepositorio repositorio = new DoramaRepositorio();
+        static DoramaRepositorio repositorioD = new DoramaRepositorio();
+		static FilmeRepositorio repositorioF = new FilmeRepositorio();
         static void Main(string[] args)
         {
             string opcaoUser = ReceberOpcaoUser();
@@ -26,6 +27,21 @@ namespace DIO.Cadastro
 					case "5":
 						VisualizarDorama();
 						break;
+					case "6":
+						ListarFilmes();
+						break;
+					case "7":
+						InserirFilme();
+						break;
+					case "8":
+						AtualizarFilme();
+						break;
+					case "9":
+						ExcluirFilme();
+						break;
+					case "10":
+						VisualizarFilme();
+						break;
 					case "C":
 						Console.Clear();
 						break;
@@ -37,10 +53,12 @@ namespace DIO.Cadastro
             }
         }
 
+
+		// PARA DORAMAS
         private static void ListarDoramas(){
             Console.WriteLine("-----LISTAR DORAMAS-----");
 
-			var lista = repositorio.Lista();
+			var lista = repositorioD.Lista();
 
 			if (lista.Count == 0){
 				Console.WriteLine("NENHUM DORAMA CADASTRADO!");
@@ -75,13 +93,13 @@ namespace DIO.Cadastro
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
-			Dorama novoDorama = new Dorama(id: repositorio.ProximoId(),
+			Dorama novoDorama = new Dorama(id: repositorioD.ProximoId(),
 										genero: (Genero)entradaGenero,
 										titulo: entradaTitulo,
 										ano: entradaAno,
 										sinopse: entradaSinopse);
 
-			repositorio.Insere(novoDorama);
+			repositorioD.Insere(novoDorama);
 		}
 
 		private static void AtualizarDorama() {
@@ -109,21 +127,112 @@ namespace DIO.Cadastro
 										ano: entradaAno,
 										sinopse: entradaSinopse);
 
-			repositorio.Atualiza(idDorama, atualizaDorama);
+			repositorioD.Atualiza(idDorama, atualizaDorama);
 		}
 
 		private static void ExcluirDorama() {
 			Console.Write("INFORME O ID DO DORAMA: ");
 			int idDorama = int.Parse(Console.ReadLine());
 
-			repositorio.Exclui(idDorama);
+			repositorioD.Exclui(idDorama);
 		}
 
 		private static void VisualizarDorama() {
 			Console.Write("INFORME O ID DO DORAMA: ");
 			int idDorama = int.Parse(Console.ReadLine());
 
-			var dorama = repositorio.RetornaPorId(idDorama);
+			var dorama = repositorioD.RetornaPorId(idDorama);
+
+			Console.WriteLine(dorama);
+		}
+
+
+		// PARA FILMES
+		 private static void ListarFilmes(){
+            Console.WriteLine("-----LISTAR FILMES-----");
+
+			var lista = repositorioF.Lista();
+
+			if (lista.Count == 0){
+				Console.WriteLine("NENHUM FILME CADASTRADO!");
+				return;
+			}
+
+			foreach (var filme in lista) {   
+				var indisponivel = filme.retornaExluido();
+				//if(!indisponivel){}
+				Console.WriteLine("#ID {0}: {1} {2}", filme.retornaId(), filme.retornaTitulo(), (indisponivel ? "[INDISPONÍVEL]" : ""));
+			}
+        }
+
+        private static void InserirFilme() {
+			Console.WriteLine("-----INSERIR NOVO FILME-----");
+
+			foreach (int i in Enum.GetValues(typeof(Genero))) {
+				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+			}
+
+			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
+			int entradaGenero = int.Parse(Console.ReadLine());
+
+			Console.Write("INFORME O TÍTULO: ");
+			string entradaTitulo = Console.ReadLine();
+
+			Console.Write("INFORME O ANO DE LANÇAMENTO: ");
+			int entradaAno = int.Parse(Console.ReadLine());
+
+			Console.Write("INFORME A SINOPSE: ");
+			string entradaSinopse = Console.ReadLine();
+
+			Filme novoFilme = new Filme(id: repositorioF.ProximoId(),
+										genero: (Genero)entradaGenero,
+										titulo: entradaTitulo,
+										ano: entradaAno,
+										sinopse: entradaSinopse);
+
+			repositorioF.Insere(novoFilme);
+		}
+
+		private static void AtualizarFilme() {
+			Console.Write("INFORME O ID DO FILME: ");
+			int idFilme = int.Parse(Console.ReadLine());
+
+			foreach (int i in Enum.GetValues(typeof(Genero))){
+				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+			}
+			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
+			int entradaGenero = int.Parse(Console.ReadLine());
+
+			Console.Write("INFORME O TÍTULO: ");
+			string entradaTitulo = Console.ReadLine();
+
+			Console.Write("INFORME O ANO DE LANÇAMENTO: ");
+			int entradaAno = int.Parse(Console.ReadLine());
+
+			Console.Write("INFORME A SINOPSE: ");
+			string entradaSinopse = Console.ReadLine();
+
+			Filme atualizaFilme = new Filme(id: idFilme,
+										genero: (Genero)entradaGenero,
+										titulo: entradaTitulo,
+										ano: entradaAno,
+										sinopse: entradaSinopse);
+
+			repositorioF.Atualiza(idFilme, atualizaFilme);
+		}
+
+		private static void ExcluirFilme() {
+			Console.Write("INFORME O ID DO FILME: ");
+			int idFilme = int.Parse(Console.ReadLine());
+
+			repositorioF.Exclui(idFilme);
+		}
+
+		private static void VisualizarFilme() {
+			Console.Write("INFORME O ID DO FILME: ");
+			int idFilme = int.Parse(Console.ReadLine());
+
+			var dorama = repositorioF.RetornaPorId(idFilme);
 
 			Console.WriteLine(dorama);
 		}
@@ -136,13 +245,18 @@ namespace DIO.Cadastro
 			Console.WriteLine("|                                |");
 			Console.WriteLine("| SELECIONE UMA OPÇÃO:           |");
 			Console.WriteLine("|                                |");
-			Console.WriteLine("| 1 - LISTAR DORAMAS             |");
-			Console.WriteLine("| 2 - INSERIR NOVO DORAMA        |");
-			Console.WriteLine("| 3 - ATUALIZAR DORAMA           |");
-			Console.WriteLine("| 4 - EXCLUIR DORAMA             |");
-			Console.WriteLine("| 5 - VISUALIZAR DORAMA          |");
-			Console.WriteLine("| C - LIMPAR A TELA              |");
-			Console.WriteLine("| X - SAIR                       |");
+			Console.WriteLine("|  1 - LISTAR DORAMAS            |");
+			Console.WriteLine("|  2 - INSERIR NOVO DORAMA       |");
+			Console.WriteLine("|  3 - ATUALIZAR DORAMA          |");
+			Console.WriteLine("|  4 - EXCLUIR DORAMA            |");
+			Console.WriteLine("|  5 - VISUALIZAR DORAMA         |");
+			Console.WriteLine("|  6 - LISTAR FILMES             |");
+			Console.WriteLine("|  7 - INSERIR NOVO FILME        |");
+			Console.WriteLine("|  8 - ATUALIZAR FILME           |");
+			Console.WriteLine("|  9 - EXCLUIR FILME             |");
+			Console.WriteLine("| 10 - VISUALIZAR FILME          |");
+			Console.WriteLine("|  C - LIMPAR A TELA             |");
+			Console.WriteLine("|  X - SAIR                      |");
 			Console.WriteLine("|                                |");
 			Console.WriteLine("|________________________________|");
 			Console.WriteLine();

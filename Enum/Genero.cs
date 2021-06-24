@@ -2,18 +2,16 @@ namespace DIO.Cadastro
 {
     public enum Genero
     {
-        Acao = 1,
-		Aventura = 2,
-		Comedia = 3,
-		Documentario = 4,
-		Drama = 5,
-		Espionagem = 6,
-		Faroeste = 7,
-		Fantasia = 8,
-		Ficcao_Cientifica = 9,
-		Musical = 10,
-		Romance = 11,
-		Suspense = 12,
-		Terror = 13
+        AÇÃO = 1,
+		AVENTURA = 2,
+		COMÉDIA = 3,
+		DRAMA = 4,
+		POLICIAL = 5,
+		FANTASIA = 6,
+		SCI_FI = 7,
+		ROMANCE = 8,
+		SUSPENSE = 9,
+		TERROR = 10,
+		SLICE_OF_LIFE = 11
     }
 }
