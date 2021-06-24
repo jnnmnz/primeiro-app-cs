@@ -8,24 +8,26 @@ namespace DIO.Cadastro
         private string Titulo { get; set; }
         private string Sinopse { get; set; }
         private int Ano { get; set; }
+        private int Duracao { get; set; }
         private bool Indisponivel { get; set; }
 
-        public Filme (int id, Genero genero, string titulo, string sinopse, int ano) {
+        public Filme (int id, Genero genero, string titulo, string sinopse, int ano, int duracao) {
             this.Id = id;
             this.Genero = genero;
             this.Titulo = titulo;
             this.Sinopse = sinopse;
             this.Ano = ano;
+            this.Duracao = duracao;
             this.Indisponivel = false;
         }
 
         public override string ToString() {
             string retorno = "";
-            retorno += "Gênero: "+this.Genero+Environment.NewLine;
-            retorno += "Título: "+this.Titulo+Environment.NewLine;
-            retorno += "Sinopse: "+this.Sinopse+Environment.NewLine;
-            retorno += "Lançamento: "+this.Ano+Environment.NewLine;
-            retorno += "Disponível: "+this.Indisponivel;
+            retorno += "TÍTULO: "+this.Titulo+Environment.NewLine;
+            retorno += "GÊNERO: "+this.Genero+Environment.NewLine;
+            retorno += "SINOPSE: "+this.Sinopse+Environment.NewLine;
+            retorno += "LANÇAMENTO: "+this.Ano+"        DURAÇÃO: "+this.Duracao+" minutos"+Environment.NewLine;
+            retorno += "DISPONÍVEL: "+(this.Indisponivel ? "NÃO" : "SIM");
             //return base.ToString();
             return retorno;
         }

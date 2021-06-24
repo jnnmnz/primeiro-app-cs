@@ -54,7 +54,7 @@ namespace DIO.Cadastro
         }
 
 
-		// PARA DORAMAS
+		// INICIO -- PARA DORAMAS
         private static void ListarDoramas(){
             Console.WriteLine("-----LISTAR DORAMAS-----");
 
@@ -93,11 +93,29 @@ namespace DIO.Cadastro
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
+			Console.Write("INFORME A EMISSORA: ");
+			string entradaEmissora = Console.ReadLine();
+
+			Console.Write("INFORME O TOTAL DE EPISÓDIOS: ");
+			int entradaEpisodios = int.Parse(Console.ReadLine());
+
+			Console.Write("COMPLETO? (S / N): ");
+			bool entradaCompleto;
+			if (Console.ReadLine() == "S"){
+				entradaCompleto = true;
+			}
+			else {
+				entradaCompleto = false;
+			}
+
 			Dorama novoDorama = new Dorama(id: repositorioD.ProximoId(),
 										genero: (Genero)entradaGenero,
 										titulo: entradaTitulo,
 										ano: entradaAno,
-										sinopse: entradaSinopse);
+										sinopse: entradaSinopse,
+										emissora: entradaEmissora,
+										episodios: entradaEpisodios,
+										completo: entradaCompleto);
 
 			repositorioD.Insere(novoDorama);
 		}
@@ -107,7 +125,7 @@ namespace DIO.Cadastro
 			int idDorama = int.Parse(Console.ReadLine());
 
 			foreach (int i in Enum.GetValues(typeof(Genero))){
-				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+				Console.WriteLine("[{0}] {1}", i, Enum.GetName(typeof(Genero), i));
 			}
 			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
 			int entradaGenero = int.Parse(Console.ReadLine());
@@ -121,11 +139,29 @@ namespace DIO.Cadastro
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
+			Console.Write("INFORME A EMISSORA: ");
+			string entradaEmissora = Console.ReadLine();
+
+			Console.Write("INFORME O TOTAL DE EPISÓDIOS: ");
+			int entradaEpisodios = int.Parse(Console.ReadLine());
+
+			Console.Write("COMPLETO? (S / N): ");
+			bool entradaCompleto;
+			if (Console.ReadLine() == "S"){
+				entradaCompleto = true;
+			}
+			else {
+				entradaCompleto = false;
+			}
+
 			Dorama atualizaDorama = new Dorama(id: idDorama,
 										genero: (Genero)entradaGenero,
 										titulo: entradaTitulo,
 										ano: entradaAno,
-										sinopse: entradaSinopse);
+										sinopse: entradaSinopse,
+										emissora: entradaEmissora,
+										episodios: entradaEpisodios,
+										completo: entradaCompleto);
 
 			repositorioD.Atualiza(idDorama, atualizaDorama);
 		}
@@ -146,8 +182,10 @@ namespace DIO.Cadastro
 			Console.WriteLine(dorama);
 		}
 
+		// FIM -- PARA DORAMAS
 
-		// PARA FILMES
+
+		// INICIO -- PARA FILMES
 		 private static void ListarFilmes(){
             Console.WriteLine("-----LISTAR FILMES-----");
 
@@ -184,11 +222,15 @@ namespace DIO.Cadastro
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
+			Console.Write("INFORME A DURAÇÃO EM MINUTOS: ");
+			int entradaDuracao = int.Parse(Console.ReadLine());
+
 			Filme novoFilme = new Filme(id: repositorioF.ProximoId(),
 										genero: (Genero)entradaGenero,
 										titulo: entradaTitulo,
 										ano: entradaAno,
-										sinopse: entradaSinopse);
+										sinopse: entradaSinopse,
+										duracao: entradaDuracao);
 
 			repositorioF.Insere(novoFilme);
 		}
@@ -212,11 +254,15 @@ namespace DIO.Cadastro
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
+			Console.Write("INFORME A DURAÇÃO EM MINUTOS: ");
+			int entradaDuracao = int.Parse(Console.ReadLine());
+
 			Filme atualizaFilme = new Filme(id: idFilme,
 										genero: (Genero)entradaGenero,
 										titulo: entradaTitulo,
 										ano: entradaAno,
-										sinopse: entradaSinopse);
+										sinopse: entradaSinopse,
+										duracao: entradaDuracao);
 
 			repositorioF.Atualiza(idFilme, atualizaFilme);
 		}
