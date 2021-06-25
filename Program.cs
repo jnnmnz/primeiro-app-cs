@@ -13,7 +13,8 @@ namespace DIO.Cadastro
             while (opcaoUserMain.ToUpper() != "X") {
                 switch (opcaoUserMain) {
 					case "1":
-						ReceberOpcaoDorama();
+						string opcaoUserD = ReceberOpcaoDorama();
+						opcaoUserD=Console.ReadLine().ToUpper();
 						break;
 					case "2":
 						ReceberOpcaoFilme();
@@ -41,25 +42,36 @@ namespace DIO.Cadastro
 
 		// INICIO -- PARA DORAMAS
         private static void ListarDoramas(){
-            Console.WriteLine("-----LISTAR DORAMAS-----");
+			Console.WriteLine();
+            Console.WriteLine("    -----  LISTA DE DORAMAS  -----   ");
+			Console.WriteLine();
 
 			var lista = repositorioD.Lista();
 
 			if (lista.Count == 0){
-				Console.WriteLine("NENHUM DORAMA CADASTRADO!");
+				Console.WriteLine("! NENHUM DORAMA CADASTRADO !");
+				Console.WriteLine();
+				Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+				Console.ReadKey();
 				return;
 			}
+
 			foreach (var dorama in lista) {   
 				var indisponivel = dorama.retornaExluido();
-				Console.WriteLine("#ID {0}: {1} {2}", dorama.retornaId(), dorama.retornaTitulo(), (indisponivel ? "[INDISPONÍVEL]" : ""));
+				Console.WriteLine(" #{0} - {1} {2}", dorama.retornaId(), dorama.retornaTitulo(), (indisponivel ? "[INDISPONÍVEL]" : ""));
 			}
+			Console.WriteLine();
+			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.ReadKey();
         }
 
         private static void InserirDorama() {
-			Console.WriteLine("-----INSERIR NOVO DORAMA-----");
+			Console.Clear();
+			Console.WriteLine();
+			Console.WriteLine("    -----  INSERIR NOVO DORAMA  -----    ");
 
 			foreach (int i in Enum.GetValues(typeof(Genero))) {
-				Console.WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+				Console.WriteLine("  [{0}] {1}", i, Enum.GetName(typeof(Genero), i));
 			}
 
 			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
@@ -99,6 +111,10 @@ namespace DIO.Cadastro
 										completo: entradaCompleto);
 
 			repositorioD.Insere(novoDorama);
+
+			Console.WriteLine("! DORAMA '{0}' CADASTRADO!", entradaTitulo);
+			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.ReadKey();
 		}
 
 		private static void AtualizarDorama() {
@@ -284,7 +300,6 @@ namespace DIO.Cadastro
 			
 			Console.Write(">> ");
 			string opcaoUserMain = Console.ReadLine().ToUpper();
-
 			return opcaoUserMain;
         }
 
@@ -330,14 +345,15 @@ namespace DIO.Cadastro
 						VisualizarDorama();
 						break;
 					case "V":
-						opcaoUserD="0";
-						ReceberOpcaoUserMain();
-						break;		
+						ReceberOpcaoUserMain();	
+						break;
 					case "X":
 						Environment.Exit(-1);
 						break;
 				}
+				opcaoUserD = ReceberOpcaoDorama();
 			}
+			
 			return opcaoUserD;
         }
 		private static string ReceberOpcaoFilme() {
@@ -361,6 +377,7 @@ namespace DIO.Cadastro
 			Console.WriteLine("|________________________________|");
 			Console.WriteLine();
 
+			Console.Write(">> ");
 			string opcaoUserF = Console.ReadLine().ToUpper();
 			Console.WriteLine();
 
@@ -384,7 +401,6 @@ namespace DIO.Cadastro
 					ReceberOpcaoUserMain();
 				}			
 			}
-
 			return opcaoUserF;
         }
     }
