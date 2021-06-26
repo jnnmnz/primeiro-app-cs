@@ -47,6 +47,28 @@ namespace DIO.Cadastro
         public int retornaId() {
             return this.Id;
         }
+        public int retornaGenero() {
+            //int i;
+            //Genero generoA = (Genero) this.Genero;
+            //int generoAtual = generoA);
+            return this.Genero.GetHashCode();
+            //return int.Parse(this.Genero);
+        }
+        public string retornaSinopse() {
+            return this.Sinopse;
+        }
+        public int retornaAno() {
+            return this.Ano;
+        }
+        public int retornaEpisodio(){
+            return this.Episodios;
+        }
+        public string retornaEmissora() {
+            return this.Emissora;
+        }
+        public bool retornaStatus() {
+            return this.Completo;
+        }
         public bool retornaExluido(){
             return this.Indisponivel;
         }

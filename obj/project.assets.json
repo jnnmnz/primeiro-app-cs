@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\lider\\.nuget\\packages\\": {}
+    "C:\\Users\\Jenn-y\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lider\\Documents\\jnnmn\\DIO.Cadastro\\DIO.Cadastro.csproj",
+      "projectUniqueName": "C:\\Users\\Jenn-y\\@jnnmnz (github)\\DIO.Cadastro.csproj",
       "projectName": "DIO.Cadastro",
-      "projectPath": "C:\\Users\\lider\\Documents\\jnnmn\\DIO.Cadastro\\DIO.Cadastro.csproj",
-      "packagesPath": "C:\\Users\\lider\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lider\\Documents\\jnnmn\\DIO.Cadastro\\obj\\",
+      "projectPath": "C:\\Users\\Jenn-y\\@jnnmnz (github)\\DIO.Cadastro.csproj",
+      "packagesPath": "C:\\Users\\Jenn-y\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jenn-y\\@jnnmnz (github)\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lider\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Jenn-y\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

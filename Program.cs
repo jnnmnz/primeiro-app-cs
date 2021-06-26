@@ -43,7 +43,7 @@ namespace DIO.Cadastro
 		// INICIO -- PARA DORAMAS
         private static void ListarDoramas(){
 			Console.WriteLine();
-            Console.WriteLine("    -----  LISTA DE DORAMAS  -----   ");
+            Console.WriteLine("    -----    LISTA DE DORAMAS    -----   ");
 			Console.WriteLine();
 
 			var lista = repositorioD.Lista();
@@ -68,11 +68,14 @@ namespace DIO.Cadastro
         private static void InserirDorama() {
 			Console.Clear();
 			Console.WriteLine();
-			Console.WriteLine("    -----  INSERIR NOVO DORAMA  -----    ");
+			Console.WriteLine("    -----    INSERIR NOVO DORAMA    -----    ");
+			Console.WriteLine();
 
 			foreach (int i in Enum.GetValues(typeof(Genero))) {
 				Console.WriteLine("  [{0}] {1}", i, Enum.GetName(typeof(Genero), i));
 			}
+
+			Console.WriteLine();
 
 			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
 			int entradaGenero = int.Parse(Console.ReadLine());
@@ -112,36 +115,81 @@ namespace DIO.Cadastro
 
 			repositorioD.Insere(novoDorama);
 
-			Console.WriteLine("! DORAMA '{0}' CADASTRADO!", entradaTitulo);
+			Console.WriteLine();
+			Console.WriteLine("! DORAMA ''{0}'' CADASTRADO!", entradaTitulo);
 			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
 		private static void AtualizarDorama() {
+			Console.Clear();
+			Console.WriteLine();
+			Console.WriteLine("     -----    ATUALIZAR DORAMA    -----    ");
+			Console.WriteLine();
+			
 			Console.Write("INFORME O ID DO DORAMA: ");
 			int idDorama = int.Parse(Console.ReadLine());
 
-			foreach (int i in Enum.GetValues(typeof(Genero))){
-				Console.WriteLine("[{0}] {1}", i, Enum.GetName(typeof(Genero), i));
+			var dorama = repositorioD.RetornaPorId(idDorama);
+			string entradaTitulo, modifica;
+			int entradaGenero;
+
+			Console.WriteLine();
+			Console.WriteLine("O TÍTULO ATUAL É: {0}", dorama.retornaTitulo());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
+			if(modifica=="S"){
+				Console.Write("INFORME O NOVO TÍTULO: ");
+				entradaTitulo = Console.ReadLine();
 			}
-			Console.Write("INFORME O CÓDIGO DO GÊNERO: ");
-			int entradaGenero = int.Parse(Console.ReadLine());
-
-			Console.Write("INFORME O TÍTULO: ");
-			string entradaTitulo = Console.ReadLine();
-
+			else{entradaTitulo = dorama.retornaTitulo();}
+			
+			Console.WriteLine();
+			Console.WriteLine("O GÊNERO ATUAL É: {0}", dorama.retornaGenero());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
+			if (modifica=="S") {
+				foreach (int i in Enum.GetValues(typeof(Genero))) {
+					Console.WriteLine("[{0}] {1}", i, Enum.GetName(typeof(Genero), i));
+				}
+				Console.WriteLine();
+				Console.Write("INFORME O CÓDIGO DO NOVO GÊNERO: ");
+				entradaGenero = int.Parse(Console.ReadLine());
+			}
+			else {entradaGenero = dorama.retornaGenero();}
+			
+			Console.WriteLine();
+			Console.WriteLine("O ANO ATUAL DE LANÇAMENTO É: {0}", dorama.retornaAno());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
 			Console.Write("INFORME O ANO DE LANÇAMENTO: ");
 			int entradaAno = int.Parse(Console.ReadLine());
 
+			Console.WriteLine();
+			Console.WriteLine("A SINOPSE ATUAL É: {0}", dorama.retornaSinopse());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
 			Console.Write("INFORME A SINOPSE: ");
 			string entradaSinopse = Console.ReadLine();
 
+			Console.WriteLine();
+			Console.WriteLine("A EMISSORA ATUAL É: {0}", dorama.retornaEmissora());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
 			Console.Write("INFORME A EMISSORA: ");
 			string entradaEmissora = Console.ReadLine();
 
+			Console.WriteLine();
+			Console.WriteLine("O NÚMERO ATUAL DE EPISÓDIOS É: {0}", dorama.retornaEpisodio());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
 			Console.Write("INFORME O TOTAL DE EPISÓDIOS: ");
 			int entradaEpisodios = int.Parse(Console.ReadLine());
 
+			Console.WriteLine();
+			Console.WriteLine("O ESTADO ATUAL É: {0}", dorama.retornaStatus	());
+			Console.Write("DESEJA MODIFICAR? (S / N): ");
+			modifica = Console.ReadLine();
 			Console.Write("COMPLETO? (S / N): ");
 			bool entradaCompleto;
 			if (Console.ReadLine() == "S"){
@@ -167,7 +215,25 @@ namespace DIO.Cadastro
 			Console.Write("INFORME O ID DO DORAMA: ");
 			int idDorama = int.Parse(Console.ReadLine());
 
-			repositorioD.Exclui(idDorama);
+			var dorama = repositorioD.RetornaPorId(idDorama);
+
+			Console.WriteLine();
+			Console.WriteLine("!!  O DORAMA SERÁ REMOVIDO  !!");
+			Console.Write("DESEJA CONTINUAR? (S / N)");
+			string confirma = Console.ReadLine();
+
+			if (confirma=="S"){
+				repositorioD.Exclui(idDorama);
+				Console.WriteLine();
+				Console.WriteLine("!!  DORAMA ''{0}'' REMOVIDO  !!", dorama.retornaTitulo());
+			}
+			else if(confirma=="N"){
+				Console.WriteLine();
+				Console.WriteLine("!!  OPERAÇÃO CANCELADA  !!");
+			}
+			Console.WriteLine();
+			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.ReadKey();
 		}
 
 		private static void VisualizarDorama() {
@@ -177,6 +243,9 @@ namespace DIO.Cadastro
 			var dorama = repositorioD.RetornaPorId(idDorama);
 
 			Console.WriteLine(dorama);
+			Console.WriteLine();
+			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.ReadKey();
 		}
 
 		// FIM -- PARA DORAMAS
@@ -344,16 +413,17 @@ namespace DIO.Cadastro
 				 	case "5":
 						VisualizarDorama();
 						break;
-					case "V":
-						ReceberOpcaoUserMain();	
-						break;
+					//case "V":
+					//	ReceberOpcaoUserMain();
+					//	opcaoUserD = ReceberOpcaoDorama();
 					case "X":
 						Environment.Exit(-1);
 						break;
 				}
 				opcaoUserD = ReceberOpcaoDorama();
 			}
-			
+			opcaoUserD = "0";
+			ReceberOpcaoUserMain();
 			return opcaoUserD;
         }
 		private static string ReceberOpcaoFilme() {

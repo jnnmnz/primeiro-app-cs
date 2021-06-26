@@ -14,3 +14,19 @@ C:\Users\lider\Documents\jnnmn\DIO.Cadastro\obj\Debug\net5.0\DIO.Cadastro.dll
 C:\Users\lider\Documents\jnnmn\DIO.Cadastro\obj\Debug\net5.0\ref\DIO.Cadastro.dll
 C:\Users\lider\Documents\jnnmn\DIO.Cadastro\obj\Debug\net5.0\DIO.Cadastro.pdb
 C:\Users\lider\Documents\jnnmn\DIO.Cadastro\obj\Debug\net5.0\DIO.Cadastro.genruntimeconfig.cache
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.exe
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.deps.json
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.runtimeconfig.json
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.runtimeconfig.dev.json
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.dll
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\ref\DIO.Cadastro.dll
+C:\Users\Jenn-y\@jnnmnz (github)\bin\Debug\net5.0\DIO.Cadastro.pdb
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.csproj.AssemblyReference.cache
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.AssemblyInfoInputs.cache
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.AssemblyInfo.cs
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.csproj.CoreCompileInputs.cache
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.dll
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\ref\DIO.Cadastro.dll
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.pdb
+C:\Users\Jenn-y\@jnnmnz (github)\obj\Debug\net5.0\DIO.Cadastro.genruntimeconfig.cache
