@@ -38,6 +38,18 @@ namespace DIO.Cadastro
         public int retornaId() {
             return this.Id;
         }
+        public int retornaGenero() {
+            return this.Genero.GetHashCode();
+        }
+        public string retornaSinopse() {
+            return this.Sinopse;
+        }
+        public int retornaAno() {
+            return this.Ano;
+        }
+        public int retornaDuracao(){
+            return this.Duracao;
+        }
         public bool retornaExluido(){
             return this.Indisponivel;
         }

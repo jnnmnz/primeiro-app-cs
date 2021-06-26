@@ -48,11 +48,7 @@ namespace DIO.Cadastro
             return this.Id;
         }
         public int retornaGenero() {
-            //int i;
-            //Genero generoA = (Genero) this.Genero;
-            //int generoAtual = generoA);
             return this.Genero.GetHashCode();
-            //return int.Parse(this.Genero);
         }
         public string retornaSinopse() {
             return this.Sinopse;
@@ -74,6 +70,10 @@ namespace DIO.Cadastro
         }
         public void exclui(){
             this.Indisponivel = true;
+        }
+        public bool status(){
+            this.Completo = !this.Completo;
+            return this.Completo;
         }
     }
 }
