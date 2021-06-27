@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DIO.Cadastro
 {
@@ -12,25 +13,75 @@ namespace DIO.Cadastro
 
             while (opcaoUserMain.ToUpper() != "X") {
                 switch (opcaoUserMain) {
-					case "1":
-						ReceberOpcaoDorama();
-						break;
-					case "2":
-						ReceberOpcaoFilme();
-						break;
-					case "3":
-						Console.WriteLine("AINDA VOU IMPLEMENTAR!");
-						Console.WriteLine();
-						Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
-						Console.ReadKey();
-						opcaoUserMain=ReceberOpcaoUserMain();
-						break;
+					case "A":
+						string opcaoUserD = ReceberOpcaoDorama();
+						while (opcaoUserD!="V"){
+							switch(opcaoUserD) {
+								case "1":
+									ListarDoramas();
+									break;
+								case "2":
+									InserirDorama();
+									break;
+								case "3":
+									AtualizarDorama();
+									break;		
+								case "4":
+									ExcluirDorama();
+									break;
+				 				case "5":
+									VisualizarDorama();
+									break;
+								case "X":
+									Environment.Exit(-1);
+									break;
+								default:
+									Console.WriteLine();
+									Console.WriteLine("!! SELECIONE UMA OPÇÃO VÁLIDA !!");
+									Console.WriteLine();
+									Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+									Console.ReadKey();
+									break;
+							}
+							opcaoUserD=ReceberOpcaoDorama();
+						} break;
+					case "B":
+						string opcaoUserF=ReceberOpcaoFilme();
+						while (opcaoUserF!="V"){
+							switch(opcaoUserF) {
+								case "1":
+									ListarFilmes();
+									break;
+								case "2":
+									InserirFilme();
+									break;
+								case "3":
+									AtualizarFilme();
+									break;		
+								case "4":
+									ExcluirFilme();
+									break;
+				 				case "5":
+									VisualizarFilme();
+									break;
+								case "X":
+									Environment.Exit(-1);
+									break;
+								default:
+									Console.WriteLine();
+									Console.WriteLine("!! SELECIONE UMA OPÇÃO VÁLIDA !!");
+									Console.WriteLine();
+									Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+									Console.ReadKey();
+									break;								
+							}
+							opcaoUserF=ReceberOpcaoFilme();
+						} break;
 					default:
 						Console.WriteLine("!! SELECIONE UMA OPÇÃO VÁLIDA !!");
 						Console.WriteLine();
-						Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+						Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 						Console.ReadKey();
-						ReceberOpcaoUserMain();
 						break;
                 }
                 opcaoUserMain=ReceberOpcaoUserMain();
@@ -40,7 +91,6 @@ namespace DIO.Cadastro
 			Console.WriteLine("!! OBRIGADO POR UTILIZAR NOSSOS SERVIÇOS !!");
 			return;
         }
-
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,8 +103,9 @@ namespace DIO.Cadastro
 			Console.WriteLine();
 			Console.WriteLine("!!  NENHUM TÍTULO CADASTRADO  !! ");
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
+			return;
 		}
         private static void ListarDoramas(){
 			var lista = repositorioD.Lista();
@@ -67,7 +118,7 @@ namespace DIO.Cadastro
 				Console.WriteLine(" #{0} - {1} {2}", dorama.retornaId(), dorama.retornaTitulo(), (indisponivel ? "[INDISPONÍVEL]" : ""));
 			}
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
         }
 
@@ -119,7 +170,7 @@ namespace DIO.Cadastro
 
 			Console.WriteLine();
 			Console.WriteLine("!!  DORAMA '{0}' CADASTRADO  !! ", entradaTitulo);
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -254,7 +305,7 @@ namespace DIO.Cadastro
 			Console.WriteLine();
 			if(conta>0){Console.WriteLine("!!  {0} CAMPOS ATUALIZADOS  !! ", conta);}
 			else if(conta==0){Console.WriteLine("!!  NADA FOI ALTERADO !! ");}
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -287,7 +338,7 @@ namespace DIO.Cadastro
 			}
 
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -303,7 +354,7 @@ namespace DIO.Cadastro
 			Console.WriteLine();
 			Console.WriteLine(dorama);
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -335,7 +386,7 @@ namespace DIO.Cadastro
 				Console.WriteLine(" #{0} - {1} {2}", filme.retornaId(), filme.retornaTitulo(), (indisponivel ? "[INDISPONÍVEL]" : ""));
 			}
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
         }
 
@@ -377,7 +428,7 @@ namespace DIO.Cadastro
 
 			Console.WriteLine();
 			Console.WriteLine("!!  FILME '{0}' CADASTRADO  !! ", entradaTitulo);
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -459,7 +510,7 @@ namespace DIO.Cadastro
 				conta++;
 			} else{entradaSinopse = filme.retornaSinopse();}
 
-			Console.Write("A DURAÇÃO ATUAL É DE {0} MINUTOS. DESEJA MODIFICAR? (S / N): ", filme.retornaAno());
+			Console.Write("A DURAÇÃO ATUAL É DE {0} MINUTOS. DESEJA MODIFICAR? (S / N): ", filme.retornaDuracao());
 			modifica = Console.ReadLine().ToUpper();
 			while (modifica!="N" && modifica!="S"){
 				Console.Write("INFORME S OU N: ");
@@ -485,7 +536,7 @@ namespace DIO.Cadastro
 			Console.WriteLine();
 			if(conta>0){Console.WriteLine("!!  {0} CAMPOS ATUALIZADOS  !! ", conta);}
 			else if(conta==0){Console.WriteLine("!!  NADA FOI ALTERADO !! ");}
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -496,7 +547,7 @@ namespace DIO.Cadastro
 			Console.Write("INFORME O ID DO FILME: ");
 			int idFilme = int.Parse(Console.ReadLine());
 
-			var filme = repositorioD.RetornaPorId(idFilme);
+			var filme = repositorioF.RetornaPorId(idFilme);
 			
 			Console.WriteLine();
 			Console.WriteLine("!!  O FILME '{0}' SERÁ REMOVIDO  !!", filme.retornaTitulo());
@@ -518,7 +569,7 @@ namespace DIO.Cadastro
 			}
 
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -534,7 +585,7 @@ namespace DIO.Cadastro
 			Console.WriteLine();
 			Console.WriteLine(filme);
 			Console.WriteLine();
-			Console.WriteLine("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
+			Console.Write("> PRESSIONE ENTER PARA RETORNAR AO MENU <");
 			Console.ReadKey();
 		}
 
@@ -547,9 +598,8 @@ namespace DIO.Cadastro
 			Console.WriteLine("|                                |");
 			Console.WriteLine("| SELECIONE UMA OPÇÃO:           |");
 			Console.WriteLine("|                                |");
-			Console.WriteLine("|  1 - DORAMAS                   |");
-			Console.WriteLine("|  2 - FILMES                    |");
-			Console.WriteLine("|  3 - LISTAR TUDO               |");
+			Console.WriteLine("|  A - DORAMAS                   |");
+			Console.WriteLine("|  B - FILMES                    |");
 			Console.WriteLine("|                                |");
 			Console.WriteLine("|  X - SAIR                      |");
 			Console.WriteLine("|                                |");
@@ -561,7 +611,7 @@ namespace DIO.Cadastro
 			return opcaoUserMain;
         }
 
-		private static void ReceberOpcaoDorama() {
+		private static string ReceberOpcaoDorama() {
 			Console.Clear();
             Console.WriteLine();
 			Console.WriteLine(" ________________________________");
@@ -584,36 +634,9 @@ namespace DIO.Cadastro
 
 			Console.Write(">> ");
 			string opcaoUserD = Console.ReadLine().ToUpper();
-
-			while (opcaoUserD!="V"){
-				switch(opcaoUserD) {
-					case "1":
-						ListarDoramas();
-						break;
-					case "2":
-						InserirDorama();
-						break;
-					case "3":
-						AtualizarDorama();
-						break;		
-					case "4":
-						ExcluirDorama();
-						break;
-				 	case "5":
-						VisualizarDorama();
-						break;
-					//case "V":
-					//	ReceberOpcaoUserMain();
-					//	opcaoUserD = ReceberOpcaoDorama();
-					case "X":
-						Environment.Exit(-1);
-						break;
-				}
-				ReceberOpcaoDorama();
-			}
-			ReceberOpcaoUserMain();
+			return opcaoUserD;
         }
-		private static void ReceberOpcaoFilme() {
+		private static string ReceberOpcaoFilme() {
             Console.Clear();
 			Console.WriteLine();
 			Console.WriteLine(" ________________________________");
@@ -636,35 +659,7 @@ namespace DIO.Cadastro
 
 			Console.Write(">> ");
 			string opcaoUserF = Console.ReadLine().ToUpper();
-			Console.WriteLine();
-
-			while (opcaoUserF!="V"){
-				switch(opcaoUserF) {
-					case "1":
-						ListarFilmes();
-						break;
-					case "2":
-						InserirFilme();
-						break;
-					case "3":
-						AtualizarFilme();
-						break;		
-					case "4":
-						ExcluirFilme();
-						break;
-				 	case "5":
-						VisualizarFilme();
-						break;
-					//case "V":
-					//	ReceberOpcaoUserMain();
-					//	opcaoUserF = ReceberOpcaoFilme();
-					case "X":
-						Environment.Exit(-1);
-						break;
-				}
-				ReceberOpcaoFilme();
-			}
-			ReceberOpcaoUserMain();
+			return opcaoUserF;
         }
     }
 }
